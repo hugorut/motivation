@@ -1,0 +1,10 @@
+#main quotes
+quotes: 
+    bruce_lee: 
+        - "Mistakes are always forgivable, if one has the courage to admit them"
+        - "If you spend too much time thinking about a thing, you'll never get it done"
+        - "A wise man can learn more from a foolish question than a fool can learn from a wise answer"
+    steve_jobs:
+        - "Design is not just what it looks like and feels like. Design is how it works"
+        - "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations"
+        - "Innovation distinguishes between a leader and a follower"

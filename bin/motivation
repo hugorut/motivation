@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'motivation'
+require 'yaml'
+require 'colour_output'
+
+quotes = YAML.load_file('./lib/quote.yml')
+motivator = Motivation.new(quotes, ColourOutput)
+puts motivator.motivate()
