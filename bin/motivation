@@ -3,7 +3,21 @@
 require 'motivation'
 require 'yaml'
 require 'colour_output'
+require 'getoptlong'
 
 quotes = YAML.load_file('./lib/quote.yml')
 motivator = Motivation.new(quotes, ColourOutput)
-puts motivator.motivate()
+
+opts = GetoptLong.new( 
+    [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+    [ '--motivate', '--watch' GetoptLong::OPTIONAL_ARGUMENT ]
+)
+
+opts.each do |option, arg|
+    case option
+        when '--motivate'
+            puts motivator.motivate arg
+        when '--help' || '-h'
+            puts 'help'
+    end
+end

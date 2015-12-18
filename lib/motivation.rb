@@ -7,12 +7,13 @@ class Motivation
     end
 
     # main motivation method
-    def motivate
-        person = @quotes.keys.sample
-        quote_length = (@quotes[person].length) -1
+    def motivate (author = nil)
+
+        selected_author = (author.nil?) ? author : @quotes.keys.sample
+        quote_length = (@quotes[selected_author].length) -1
         index = Random.rand(0..quote_length)
 
-        @colourer.random(readable(person)) + @colourer.random(" ~ ") + @colourer.random(@quotes[person][index])
+        readable(selected_author) + @colourer.random(" ~ " + @quotes[selected_author][index])
     end
 
     # convert from underscores to spaces and capitalise
