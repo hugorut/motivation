@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
     s.description = "Quotes to motivate from the command line"
     s.authors     = ["Hugo Rut"]
     s.email       = 'hugorut@gmail.com'
-    s.files       = ["lib/*.rb", "lib/quote.yml"]
+    s.files       = ["lib/motivation.rb", "lib/command_parser.rb"]
     s.license       = 'MIT'
+    s.executables << 'motivation'
 end

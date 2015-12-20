@@ -1,7 +1,7 @@
 class ColourOutput
     
     # terminal output colours
-    @@colours = {
+    COLOURS = {
         primary: "\033[95m",
         blue: "\033[94m",
         green: "\033[92m",
@@ -10,7 +10,7 @@ class ColourOutput
 
     # print out a random color
     def ColourOutput.random string
-        random_key = @@colours.keys.sample
+        random_key = COLOURS.keys.sample
 
         self.send(random_key, string)
     end
@@ -19,8 +19,8 @@ class ColourOutput
     # color from the method call
     def ColourOutput.method_missing name, *args
 
-        if @@colours.include? name
-            "#{@@colours[name]}#{args[0]}\033[0m"
+        if COLOURS.include? name
+            "#{COLOURS[name]}#{args[0]}\033[0m"
         else
             "\033[92m#{args[0]}\033[0m"
         end

@@ -7,9 +7,8 @@ class Motivation
     end
 
     # main motivation method
-    def motivate (author = nil)
-
-        selected_author = (author.nil?) ? author : @quotes.keys.sample
+    def motivate (opts)
+        selected_author = (!opts[:author].nil?) ? opts[:author] : @quotes.keys.sample
         quote_length = (@quotes[selected_author].length) -1
         index = Random.rand(0..quote_length)
 
