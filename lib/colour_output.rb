@@ -9,7 +9,7 @@ class ColourOutput
     }
 
     # print out a random color
-    def ColourOutput.random string
+    def ColourOutput.random(string)
         random_key = COLOURS.keys.sample
 
         self.send(random_key, string)
@@ -17,7 +17,7 @@ class ColourOutput
 
     # if the method is missing we need to wrap the argument in a 
     # color from the method call
-    def ColourOutput.method_missing name, *args
+    def ColourOutput.method_missing(name, *args)
 
         if COLOURS.include? name
             "#{COLOURS[name]}#{args[0]}\033[0m"

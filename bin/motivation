@@ -7,21 +7,9 @@ require 'optparse'
 require 'command_parser'
 
 quotes = YAML.load_file('./lib/quote.yml')
-motivator = Motivation.new(quotes, ColourOutput)
+motivator = Motivation.new(quotes, ColourOutput, FileWatcher.new)
+
 parser = CommandParser.new(quotes)
 options = parser.collect(ARGV)
-puts motivator.send(options[:method], options[:arguments])
-# opts = GetoptLong.new( 
-#     [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
-#     [ '--motivate', '--watch', GetoptLong::OPTIONAL_ARGUMENT ]
-# )
 
-# opts.each do |option, arg|
-#     p option
-#     case option
-#         when '--motivate'
-#             puts motivator.motivate arg
-#         when '--help' || '-h'
-#             puts 'help'
-#     end
-# end
+puts motivator.send(options[:method], options[:arguments])

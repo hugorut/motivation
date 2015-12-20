@@ -1,13 +1,14 @@
 class Motivation
     attr_accessor :quotes
 
-    def initialize quotes, colourer
+    def initialize(quotes, colourer, watcher)
         @quotes = quotes['quotes']
         @colourer = colourer
+        @watcher = watcher
     end
 
     # main motivation method
-    def motivate (opts)
+    def motivate(opts)
         selected_author = (!opts[:author].nil?) ? opts[:author] : @quotes.keys.sample
         quote_length = (@quotes[selected_author].length) -1
         index = Random.rand(0..quote_length)
@@ -17,7 +18,7 @@ class Motivation
 
     # convert from underscores to spaces and capitalise
     # so the name is readable in the console
-    def readable string
+    def readable(string)
         string.sub('_', ' ').split.map(&:capitalize).join(' ')
     end
 end
