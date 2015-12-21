@@ -5,9 +5,12 @@ require 'yaml'
 require 'colour_output'
 require 'optparse'
 require 'command_parser'
+require 'file_watcher'
 
 quotes = YAML.load_file('./lib/quote.yml')
-motivator = Motivation.new(quotes, ColourOutput, FileWatcher.new)
+file_watcher = FileWatcher.new(quotes)
+
+motivator = Motivation.new(quotes, ColourOutput, file_watcher)
 
 parser = CommandParser.new(quotes)
 options = parser.collect(ARGV)

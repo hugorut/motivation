@@ -9,4 +9,6 @@ Gem::Specification.new do |s|
     s.files       = ["lib/motivation.rb", "lib/command_parser.rb", "lib/file_watcher.rb"]
     s.license       = 'MIT'
     s.executables << 'motivation'
+    s.add_development_dependency('mocha', '>= 1.1.0')
+    s.add_development_dependency('minitest', '>= 5.8.3')
 end
