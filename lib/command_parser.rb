@@ -23,7 +23,7 @@ class CommandParser
                 OPTIONS[:arguments] = { author: m }
             end            
 
-            opts.on('-w files', '--watch files', Array, 'Watch files to increase productivit') do |w|
+            opts.on('-w files ', '--watch files', Array, 'Watch files to increase productivity') do |w|
                 OPTIONS[:method] = 'watch'
                 OPTIONS[:arguments] = { files: w }
             end

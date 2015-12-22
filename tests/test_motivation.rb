@@ -6,8 +6,7 @@ class TestMotivation < MiniTest::Unit::TestCase
     def setup
         @quotes = YAML.load_file('./lib/quote.yml')
         @colourer = mock('ColourOutput')
-        @watcher = mock('FileWatcher')
-        @motivation = Motivation.new(@quotes, @colourer, @watcher)   
+        @motivation = Motivation.new(@quotes, @colourer)   
     end
 
     def test_motivation_class_exists

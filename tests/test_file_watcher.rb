@@ -38,8 +38,9 @@ class TestFileWatcher < MiniTest::Unit::TestCase
 
     def test_watch_method_envokes_proc
         callable = Proc.new do |file, event|
-            p file
-            p event
+            key = file.has_key? "./tests/stubs/changes.stub"
+            assert(true, key)
+            assert(event, :change)
             return false
         end
         

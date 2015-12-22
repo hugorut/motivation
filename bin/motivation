@@ -8,9 +8,8 @@ require 'command_parser'
 require 'file_watcher'
 
 quotes = YAML.load_file('./lib/quote.yml')
-file_watcher = FileWatcher.new([])
 
-motivator = Motivation.new(quotes, ColourOutput.new, file_watcher)
+motivator = Motivation.new(quotes, ColourOutput.new)
 
 parser = CommandParser.new(quotes)
 options = parser.collect(ARGV)

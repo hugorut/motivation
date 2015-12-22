@@ -1,12 +1,12 @@
 class FileWatcher
     attr_reader :snapshot, :changed, :event
 
-    def initialize(files, options = nil)    
+    def initialize(files, options = {})    
         @files = files
         @changed = nil
         @event = nil
         @snapshot = snapshot_filesystem
-        @options = (options.nil?) ? {} : options
+        @options = options
     end
 
     # take a snapshot of the given files so we can compare at a given date
@@ -14,7 +14,7 @@ class FileWatcher
         mtimes = {}
 
         files = @files.map { |file| Dir[file] }.flatten.uniq
-        
+
         files.each do |file|
             if File.exists? file
                 mtimes[file] = File.stat(file).mtime
@@ -44,14 +44,21 @@ class FileWatcher
         return false
     end
 
-    # watching the files given in initialize
-    # if the files change call the proc
-    def watch(callback)
+    # watching the files given in initialize if the files change call the proc
+    def watch(have_changed, waiting = nil)
         @watching = true
 
         while @watching
             if files_changed?
-                @watching = callback.call(@changed, @event)
+                @watching = have_changed.call(@changed, @event)
+            end
+
+            sleep(1)
+
+            if not(waiting)
+                puts "waiting"
+            else
+                waiting.call
             end
         end
     end
