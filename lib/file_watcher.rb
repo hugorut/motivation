@@ -1,16 +1,50 @@
 class FileWatcher
+    attr_reader :snapshot, :changed, :event
 
     def initialize(files, options = nil)    
         @files = files
+        @changed = nil
+        @event = nil
+        @snapshot = snapshot_filesystem
         @options = (options.nil?) ? {} : options
     end
 
-    def watch(&callback)
-        @watching = true
-        while @watching
-            
+    def snapshot_filesystem
+        mtimes = {}
+
+        files = @files.map { |file| Dir[file] }.flatten.uniq
+        
+        files.each do |file|
+            if File.exists? file
+                mtimes[file] = File.stat(file).mtime
+            end
+        end
+
+        mtimes
+    end
+
+    def files_changed?
+        changes = @snapshot.to_a - snapshot_filesystem.to_a
+
+        changes.each do |change|
+            if @snapshot.keys.include? change
+                @changed = {change[0] => change[1]}
+                @event = :change
+                return true
+            else
+                @changed = {change[0] => change[1]}
+                @event = :new
+                return true
+            end
         end
     end
+
+    # def watch(&proc)
+    #     @watching = true
+    #     while @watching
+            
+    #     end
+    # end
 
     # => initalize snapshots of the files we are watching
     # => for file in given files      
