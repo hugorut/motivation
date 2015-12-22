@@ -9,6 +9,7 @@ class FileWatcher
         @options = (options.nil?) ? {} : options
     end
 
+    # take a snapshot of the given files so we can compare at a given date
     def snapshot_filesystem
         mtimes = {}
 
@@ -23,11 +24,13 @@ class FileWatcher
         mtimes
     end
 
+    # have the given files changed if they have then
+    # set the changed file and return true
     def files_changed?
         changes = @snapshot.to_a - snapshot_filesystem.to_a
 
         changes.each do |change|
-            if @snapshot.keys.include? change
+            if @snapshot.keys.include? change[0]
                 @changed = {change[0] => change[1]}
                 @event = :change
                 return true
@@ -37,24 +40,20 @@ class FileWatcher
                 return true
             end
         end
+
+        return false
     end
 
-    # def watch(&proc)
-    #     @watching = true
-    #     while @watching
-            
-    #     end
-    # end
+    # watching the files given in initialize
+    # if the files change call the proc
+    def watch(callback)
+        @watching = true
 
-    # => initalize snapshots of the files we are watching
-    # => for file in given files      
-        # array[file] = date of modification   
-    # => while we are watching the file
-        # => run a check on the the filesystem
-            # check the pervious snapshot against a current snapshot, any outstanding files have changed
-                # [[a, datetime1], [b, datetime3]] - [[a, datetime1], [b, datetime2]] = [[b, datetime3 - datetime2]] 
-                # therefore b was changed 
-            # set an updated flag with the file and event type new|changed|deleted  
-        # => if filesytem has changed
-            # pass the files and event to a block   
+        while @watching
+            if files_changed?
+                @watching = callback.call(@changed, @event)
+            end
+        end
+    end
+
 end

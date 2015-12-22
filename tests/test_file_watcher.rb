@@ -35,4 +35,17 @@ class TestFileWatcher < MiniTest::Unit::TestCase
 
         assert_nil(@file_watcher.changed)
     end
+
+    def test_watch_method_envokes_proc
+        callable = Proc.new do |file, event|
+            p file
+            p event
+            return false
+        end
+        
+        sleep(1)
+        File.open("./tests/stubs/changes.stub", "w") { |file| file.write('teafdsdddst') }
+
+        @file_watcher.watch(callable)
+    end
 end
