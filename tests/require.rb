@@ -1,0 +1,6 @@
+require 'rubygems'
+gem 'minitest'
+gem 'mocha'
+require 'minitest/autorun'
+require_relative '../lib/motivation'
+require 'mocha/mini_test'

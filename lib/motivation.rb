@@ -9,11 +9,19 @@ class Motivation
 
     # main motivation method
     def motivate(opts)
-        selected_author = (!opts[:author].nil?) ? opts[:author] : @quotes.keys.sample
-        quote_length = (@quotes[selected_author].length) -1
-        index = Random.rand(0..quote_length)
+        author = (opts[:author].nil?) ? @quotes.keys.sample : opts[:author]
 
-        readable(selected_author) + @colourer.random(" ~ " + @quotes[selected_author][index])
+        readable(author) + @colourer.random(" ~ " + get_quote(author, opts[:id]))
+    end
+
+    # get a quote, either from random or from specified author or index
+    def get_quote(author, index = nil)
+        if index.nil?
+            quote_length = (@quotes[author].length) - 1
+            index = Random.rand(0..quote_length)
+        end
+        
+        @quotes[author][index]
     end
 
     # convert from underscores to spaces and capitalise
