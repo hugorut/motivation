@@ -18,20 +18,20 @@ class CommandParser
         # build the class options from options parser instance
         parser = OptionParser.new do |opts|
             opts.banner = "Options for output grasshopper"
-            opts.separator ""
+            opts.separator "\n"
             opts.separator "Specifics:"
 
-            opts.on('-m [name]', '--motivate [name]', String, "Receive a motivation boost, you can specify an author with second parameter\n Available authors: #{output_authors}") do |m|
+            opts.on('-m [name]', '--motivate [name]', String, "# Output a motivational quote") do |m|
                 @options[:method] = 'motivate'
                 @options[:arguments] = { author: m }
             end            
 
-            opts.on('-w [files] ', '--watch [files]', Array, 'Watch files to increase productivity, optional parameter which is an array of globs of files to watch e.g. ./tests/*, defaults to everything in the directory that the command is run from' ) do |w|
+            opts.on('-w [glob1,glob2] ', '--watch [glob1,glob2]', Array, '# Watch files & output a message on file/folder change event') do |w|
                 @options[:method] = 'watch'
                 @options[:arguments] = { files: w }
             end
 
-            opts.on_tail('-h', '--help', 'Output command line help options') do 
+            opts.on_tail('-h', '--help', '# Output command line help options') do 
                 puts opts
                 exit
             end
