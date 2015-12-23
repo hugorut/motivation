@@ -2,16 +2,19 @@ require 'optparse'
 
 # wrapper class for options parser
 class CommandParser
-    OPTIONS = { method: nil, arguments: nil}
-
     # pass the config so we can access
     def initialize config
         @config = config
+        @options = options
+    end
+
+    # default options 
+    def options
+        { method: nil, arguments: nil}
     end
 
     # collect the command arguments via the option parser class
     def collect(arguments)
-
         # build the class options from options parser instance
         parser = OptionParser.new do |opts|
             opts.banner = "Options for output grasshopper"
@@ -19,13 +22,13 @@ class CommandParser
             opts.separator "Specifics:"
 
             opts.on('-m [name]', '--motivate [name]', String, "Receive a motivation boost, you can specify an author with second parameter\n Available authors: #{output_authors}") do |m|
-                OPTIONS[:method] = 'motivate'
-                OPTIONS[:arguments] = { author: m }
+                @options[:method] = 'motivate'
+                @options[:arguments] = { author: m }
             end            
 
-            opts.on('-w files ', '--watch files', Array, 'Watch files to increase productivity') do |w|
-                OPTIONS[:method] = 'watch'
-                OPTIONS[:arguments] = { files: w }
+            opts.on('-w [files] ', '--watch [files]', Array, 'Watch files to increase productivity, optional parameter which is an array of globs of files to watch e.g. ./tests/*, defaults to everything in the directory that the command is run from' ) do |w|
+                @options[:method] = 'watch'
+                @options[:arguments] = { files: w }
             end
 
             opts.on_tail('-h', '--help', 'Output command line help options') do 
@@ -45,13 +48,13 @@ class CommandParser
 
         # if no valid methods were set we can't execute and therefore we exit and
         # put the parser message to the console
-        if OPTIONS[:method].nil?            
+        if @options[:method].nil?            
             puts parser
             exit(1)
         end
 
         #return the options
-        OPTIONS
+        @options
     end
 
     #output a prett list of authors

@@ -1,12 +1,13 @@
 require_relative 'require'
 require 'yaml'
 
-class TestMotivation < MiniTest::Unit::TestCase
+class TestMotivation < MiniTest::Test
     
     def setup
         @quotes = YAML.load_file('./lib/quote.yml')
         @colourer = mock('ColourOutput')
-        @motivation = Motivation.new(@quotes, @colourer)   
+        @watcher = mock('FileWatcher')
+        @motivation = Motivation.new(@quotes['quotes'], @colourer, @watcher)   
     end
 
     def test_motivation_class_exists

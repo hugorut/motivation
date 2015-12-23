@@ -7,11 +7,15 @@ require 'optparse'
 require 'command_parser'
 require 'file_watcher'
 
+# load the quotes from the yaml file
 quotes = YAML.load_file('./lib/quote.yml')
+# initialise the motivation class
+motivator = Motivation.new(quotes['quotes'], ColourOutput.new, FileWatcher.new)
 
-motivator = Motivation.new(quotes, ColourOutput.new)
-
+# get arguments from the command line
 parser = CommandParser.new(quotes)
 options = parser.collect(ARGV)
 
+# send the arguments to the motivation object and print the output 
+# to the console
 puts motivator.send(options[:method], options[:arguments])

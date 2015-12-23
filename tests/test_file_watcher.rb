@@ -1,7 +1,7 @@
 require_relative 'require'
 require './lib/file_watcher'
 
-class TestFileWatcher < MiniTest::Unit::TestCase
+class TestFileWatcher < MiniTest::Test
     
     def setup
         @files = ['./tests/stubs/*']
@@ -10,7 +10,9 @@ class TestFileWatcher < MiniTest::Unit::TestCase
     end
 
     def teardown
-        File.delete("./tests/stubs/changes.stub")
+        if File.exists? "./tests/stubs/changes.stub"
+            File.delete("./tests/stubs/changes.stub")
+        end
     end
     
     def test_snapshot_returns_hash_of_mtime_of_files
@@ -27,7 +29,28 @@ class TestFileWatcher < MiniTest::Unit::TestCase
         File.open("./tests/stubs/changes.stub", "w") { |file| file.write('tedddst') }
         @file_watcher.files_changed?
 
-        assert_includes(@file_watcher.changed.keys, './tests/stubs/changes.stub')
+        assert(@file_watcher.changed['./tests/stubs/changes.stub'])
+        assert_equal(@file_watcher.event, :change)
+    end     
+
+    def test_files_added_returns_new_file_event
+        File.open("./tests/stubs/changes2.stub", "w") { |file| file.write('tedddst') }
+        @file_watcher.files_changed?
+
+        assert(@file_watcher.changed['./tests/stubs/changes2.stub'])
+        assert_equal(@file_watcher.event, :new)
+
+        File.delete("./tests/stubs/changes2.stub")
+    end     
+
+    def test_files_added_returns_delete_file_event
+        sleep(1)
+
+        File.delete("./tests/stubs/changes.stub")
+        @file_watcher.files_changed?
+
+        assert(@file_watcher.changed['./tests/stubs/changes.stub'])
+        assert_equal(@file_watcher.event, :delete)
     end 
 
     def test_files_changed_returns_nil_as_none_changed

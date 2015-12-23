@@ -1,9 +1,10 @@
 class Motivation
     attr_accessor :quotes
 
-    def initialize(quotes, colourer)
-        @quotes = quotes['quotes']
+    def initialize(quotes, colourer, watcher)
+        @quotes = quotes
         @colourer = colourer
+        @watcher = watcher
     end
 
     # output a string of motivation to the console prepended by the 
@@ -17,20 +18,15 @@ class Motivation
     # watch the files in the system and call the files changed method as a 
     # proc when there is an event that we need to hook into
     def watch(opts)
-        watcher = FileWatcher.new(opts[:files])
-        watcher.watch(method(:files_changed), method(:waiting_on_files))
+        @watcher.set_files(opts[:files]) if opts[:files]
+        @watcher.watch(method(:files_changed))
     end
 
     # the callable method which contains the logic once files are changed
     def files_changed(file, event)
-        puts event.to_s + ' event: ' + file.keys[0] 
         puts motivate
-        return false
-    end
-
-    # logic to call if watiting on the files to change
-    def waiting_on_files
-        puts "keep it up"
+        # return true so that the watch loop keeps running
+        return true
     end
 
     # get a quote, either from random or from specified author or index
@@ -46,6 +42,6 @@ class Motivation
     # convert from underscores to spaces and capitalise
     # so the name is readable in the console
     def readable(string)
-        string.sub('_', ' ').split.map(&:capitalize).join(' ')
+        string.gsub('_', ' ').split.map(&:capitalize).join(' ')
     end
 end

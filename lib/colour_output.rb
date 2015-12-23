@@ -2,17 +2,16 @@ class ColourOutput
     attr_accessor :colours, :default
 
     # initialize and yield self in order to give a hook to modify class
-    def initialize()
-        @colours = {
-            primary: "\033[95m",
-            blue: "\033[94m",
-            green: "\033[92m",
-            warning: "\033[93m",
-        }
-
+    def initialize
+        @colours = default_colours
         @default = "\033[92m"
 
         yield self if block_given?
+    end
+
+    # default colors hash
+    def default_colours
+        {primary: "\033[95m", blue: "\033[94m", green: "\033[92m", warning: "\033[93m", }
     end
 
     # print out a random color

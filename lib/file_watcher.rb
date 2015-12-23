@@ -1,12 +1,19 @@
 class FileWatcher
     attr_reader :snapshot, :changed, :event
 
-    def initialize(files, options = {})    
-        @files = files
+    def initialize(files = nil, options = {})    
+        @files = files || ['./**/*']
         @changed = nil
         @event = nil
-        @snapshot = snapshot_filesystem
+        if not @files.empty?
+            @snapshot = snapshot_filesystem
+        end
         @options = options
+    end
+
+    def set_files(files)
+        @files = files
+        @snapshot = snapshot_filesystem
     end
 
     # take a snapshot of the given files so we can compare at a given date
@@ -27,21 +34,31 @@ class FileWatcher
     # have the given files changed if they have then
     # set the changed file and return true
     def files_changed?
-        changes = @snapshot.to_a - snapshot_filesystem.to_a
+        # initialise variables for the 
+        new_snapshot = snapshot_filesystem
+        has_changed = false
 
+        # take a new snapshot and subtract this from the old snapshot in order to get forward changes
+        # then add the snapshot to the oposite subtraction to get backward changes
+        changes = (@snapshot.to_a - new_snapshot.to_a) + (new_snapshot.to_a - @snapshot.to_a)
+        
+        # determine the event for each change
         changes.each do |change|
             if @snapshot.keys.include? change[0]
                 @changed = {change[0] => change[1]}
-                @event = :change
-                return true
+                @event = (new_snapshot.keys.include? change[0]) ? :change : :delete
+                has_changed = true
             else
                 @changed = {change[0] => change[1]}
                 @event = :new
-                return true
+                has_changed = true
             end
         end
+        
+        # lets reset the snapshot so that we don't create a forever loop
+        @snapshot = new_snapshot
 
-        return false
+        return has_changed
     end
 
     # watching the files given in initialize if the files change call the proc
@@ -55,11 +72,7 @@ class FileWatcher
 
             sleep(1)
 
-            if not(waiting)
-                puts "waiting"
-            else
-                waiting.call
-            end
+            waiting.call if waiting
         end
     end
 

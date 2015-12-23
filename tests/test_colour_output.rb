@@ -1,7 +1,7 @@
 require_relative 'require'
 require './lib/colour_output'
 
-class TestColourOutput < MiniTest::Unit::TestCase
+class TestColourOutput < MiniTest::Test
         
     def test_yields_self_on_init
         ColourOutput.new do |color|

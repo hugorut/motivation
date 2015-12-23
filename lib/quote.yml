@@ -8,3 +8,35 @@ quotes:
         - "Design is not just what it looks like and feels like. Design is how it works"
         - "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations"
         - "Innovation distinguishes between a leader and a follower"
+    abraham_licoln:
+        - "Nearly all men can stand adversity, but if you want to test a man's character, give him power"
+        - "Whatever you are, be a good one"
+        - "Always bear in mind that your own resolution to succeed is more important than any other"
+    c_s_lewis: 
+        - "I have found a desire within myself that no experience in this world can satisfy; the most probable explanation is that I was made for another world"
+        - "Friendship is born at that moment when one person says to another: What! You too? I thought I was the only one"
+        - "You are never too old to set another goal or to dream a new dream"
+    thomas_edison:
+        - "I have not failed. I've just found 10,000 ways that won't work"
+        - "Many of life's failures are people who did not realize how close they were to success when they gave up"
+        - "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time"
+    eleanor_roosevelt:
+        - "No one can make you feel inferior without your consent"
+        - "Great minds discuss ideas; average minds discuss events; small minds discuss people"
+        - "The future belongs to those who believe in the beauty of their dreams"
+    mark_twain:
+        - "Don't go around saying the world owes you a living. The world owes you nothing. It was here first"
+        - "I have never let my schooling interfere with my education"
+        - "If you tell the truth, you don't have to remember anything"
+    albert_einstein:
+        - "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe"
+        - "The important thing is not to stop questioning. Curiosity has its own reason for existing"
+        - "Science without religion is lame, religion without science is blind"
+    winston_churchill:
+        - "Success consists of going from failure to failure without loss of enthusiasm"
+        - "If you're going through hell, keep going"
+        - "You have enemies? Good. That means you've stood up for something, sometime in your life"
+    walt_disney: 
+        - "All our dreams can come true, if we have the courage to pursue them"
+        - "It's kind of fun to do the impossible"
+        - "We keep moving forward, opening new doors, and doing new things, because we're curious and curiosity keeps leading us down new paths"
