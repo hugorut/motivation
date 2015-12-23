@@ -1,0 +1,6 @@
+language: ruby
+rvm:
+  - 1.9.3
+before_install:
+    gem build motivation.gemspec
+    gem install --dev motivation-0.0.0.gem
