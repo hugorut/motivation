@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'motivation'
+require 'motivator'
 require 'yaml'
 require 'colour_output'
 require 'optparse'
@@ -10,7 +10,7 @@ require 'file_watcher'
 # load the quotes from the yaml file
 quotes = YAML.load_file('./lib/quote.yml')
 # initialise the motivation class
-motivator = Motivation.new(quotes['quotes'], ColourOutput.new, FileWatcher.new)
+motivator = Motivator.new(quotes['quotes'], ColourOutput.new, FileWatcher.new)
 
 # get arguments from the command line
 parser = CommandParser.new(quotes)

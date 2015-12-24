@@ -1,4 +1,4 @@
-class Motivation
+class Motivator
     attr_accessor :quotes
 
     def initialize(quotes, colourer, watcher)

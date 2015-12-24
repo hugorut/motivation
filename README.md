@@ -1,3 +1,4 @@
+![alt text](https://travis-ci.org/hugorut/motivation.svg?branch=master "build status")
 # Motivation
 Ruby gem for command line motivation
 

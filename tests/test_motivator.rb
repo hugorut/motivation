@@ -1,17 +1,18 @@
+require './lib/motivator'
 require_relative 'require'
 require 'yaml'
 
-class TestMotivation < MiniTest::Test
+class TestMotivator < MiniTest::Test
     
     def setup
         @quotes = YAML.load_file('./lib/quote.yml')
         @colourer = mock('ColourOutput')
         @watcher = mock('FileWatcher')
-        @motivation = Motivation.new(@quotes['quotes'], @colourer, @watcher)   
+        @motivation = Motivator.new(@quotes['quotes'], @colourer, @watcher)   
     end
 
     def test_motivation_class_exists
-        assert_kind_of(Motivation, @motivation)
+        assert_kind_of(Motivator, @motivation)
     end
 
     def test_readable_returns_a_titilized_split_name
