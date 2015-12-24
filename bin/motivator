@@ -8,7 +8,7 @@ require 'command_parser'
 require 'file_watcher'
 
 # load the quotes from the yaml file
-quotes = YAML.load_file('./lib/quote.yml')
+quotes = YAML.load_file(File.dirname(__FILE__)+'/../lib/quote.yml')
 # initialise the motivation class
 motivator = Motivator.new(quotes['quotes'], ColourOutput.new, FileWatcher.new)
 

@@ -1,14 +1,14 @@
 ![alt text](https://travis-ci.org/hugorut/motivation.svg?branch=master "build status")
-# Motivation
+# Motivator
 Ruby gem for command line motivation
 
 Intall the gem with
-```shell
-gem install hugorut/motivation
+```sh
+gem install motivator
 ```
 
 Then you can run the gem from your command line
-```shell
+```sh
 motivation --motivate
 ```
 print out a quote as below:
@@ -18,7 +18,7 @@ The motivate command also takes a second parameter so that you can specify a aut
 
 Motivation gem also allows you to watch files in a directory and print out a quote when something changes. Usefull for getting through those late night coding sessions. You can run:
 
-```shell
+```sh
 motivate --watch [glob,glob]
 ```
 The second parameter after the watch flag is a list of globs of the files you wish to watch, e.g. ./**/* or ./files/*

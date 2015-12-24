@@ -2,7 +2,7 @@ class FileWatcher
     attr_reader :snapshot, :changed, :event
 
     def initialize(files = nil, options = {})    
-        @files = files || ['./**/*']
+        @files = files || ['./*']
         @changed = nil
         @event = nil
         if not @files.empty?
