@@ -1,10 +1,18 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.8
-  - 2.2.4
+- 1.9.3
+- 2.0.0
+- 2.1.8
+- 2.2.4
 sudo: required
 before_install:
-    - gem build motivator.gemspec
-    - gem install --dev motivator-1.0.2.gem
+- gem build motivator.gemspec
+- gem install --dev motivator-1.0.2.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: PQQP0Vu1T07vaS0HaViDLvVPIQKqCiHdyyPp4I2EOaSEh4gxuYka0mBPZp8P3NlKZ94RSpNIET1yT49R5EvR7nVd9NkGCZ4hI4+nvVGaZ8TB5AeTM57KExXSVbxcE1kmHcEAdVyQo/sO5eEBC4nS5nsG/hVVKN7xqEDDwLyqVxKNRNP/lVTQxqbYLIpwhZWV83aHP2wwlvbQZ6wfooGvaiLVF5sZjev+Unl47j2LeRayQ0UWZAzNFFQBmYRLCeMZ+0FYoKyC9M9yHUZFJuVLXm5yR297ZWCXDBgC23SVvyUUoh0ewvFdl+RKQjjhxl8PtZe72heQaYmJCgyvtDH+7GgoHQ06CbVEXyIV49HfbcqaV6pj9vbxJkDNdJ1/Ij/okNddfZkKY9GI2CL9KHnsal8R/7c2sqGlFb2dnAisxDFBOj//HMnEIFCPXiD677XwIWN+oB0b9SrLV1vOdA14bPw7WONy199V/jDl4gMdFe5TsIg404+s8xBkBmkZ2cJZKLZm2l0DRqCaZF/UuU4dfM2ivbEQO2rzN62ONy0D/50yzsjOU0JsyeajSx2b9eOXg5jeCJMfInFzn/vtxrhtQQPZM6On7XEywmnHwpo9hCz+MWCVqzMsXxl9+4ne5LjppMAZu9zsdOmzy5O4DF/5gR8T3IY3XVVWpuP8pg3AhyM=
+  gem: motivator
+  on:
+    tags: true
+    repo: hugorut/motivation
