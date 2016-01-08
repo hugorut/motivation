@@ -24,7 +24,7 @@ Motivation gem also allows you to watch files in a directory and print out a quo
 ```sh
 motivator --watch [glob,glob]
 ```
-The second parameter after the watch flag is a list of globs of the files you wish to watch, e.g. `./**/*` or `./files/*`
+The second parameter after the watch flag is a list of globs of the files you wish to watch, e.g. `./**/*` or `./folder/*`
 
 Then you can have an output similar to this:
 ![alt text](http://s13.postimg.org/4edzmqguf/ezgif_com_resize.gif "watching")
