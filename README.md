@@ -2,7 +2,7 @@
 # Motivator
 Ruby gem for command line motivation
 
-Intall the gem with
+Install the gem with
 ```sh
 gem install motivator
 ```
