@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = 'motivator'
-    s.version     = '1.0.3'
+    s.version     = '1.0.4'
     s.date        = '2015-12-16'
     s.summary     = "Command line motivator"
     s.description = "Quotes to motivate from the command line"

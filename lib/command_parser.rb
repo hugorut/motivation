@@ -6,6 +6,7 @@ class CommandParser
     def initialize config
         @config = config
         @options = options
+        @help_called = false
     end
 
     # default options 
@@ -32,8 +33,9 @@ class CommandParser
             end
 
             opts.on_tail('-h', '--help', '# Output command line help options') do 
+                @help_called = true
                 puts opts
-                exit
+                exit(1)
             end
         end
 
@@ -42,14 +44,16 @@ class CommandParser
         begin
             parser.parse!(arguments)    
         rescue Exception => e
-            puts parser
-            exit(1)
+            if not(e.kind_of? SystemExit)
+                puts parser
+                exit(1)    
+            end
         end
 
         # if no valid methods were set we can't execute and therefore we exit and
         # put the parser message to the console
-        if @options[:method].nil?            
-            puts parser
+        if @options[:method].nil?
+            puts parser if not @help_called
             exit(1)
         end
 
