@@ -40,6 +40,23 @@ quotes:
         - "All our dreams can come true, if we have the courage to pursue them"
         - "It's kind of fun to do the impossible"
         - "We keep moving forward, opening new doors, and doing new things, because we're curious and curiosity keeps leading us down new paths"
+    walt_whitman:
+        - "Nothing exterior to me will ever take command of me."
+    ralph_waldo_emerson:
+        - "Do not go where the path may lead, go instead where there is no path and leave a trail."
+        - "The task ahead of us is never as great as the power behind us."
+    aristotle:
+        - "We are what we repeatedly do. Excellence, then, is not an act, but a habit."
+    frederick_douglas:
+        - "If there are no struggles, there is no progress."
+    alexander_the_great:
+        - "Nothing is impossible to him who will try."
+    sir_ken_robinson:
+        - "If you are not prepared to be wrong, you will not come up with anything original."
+    brian_kernighan:
+        - "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?"
+    tupac_shakur:
+        - "For every dark night there's a brighter day."
     anon:
         - "If you want to achieve greatness stop asking for permission."
         - "To live a creative life, we must lose our fear of being wrong."
