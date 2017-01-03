@@ -4,7 +4,7 @@ Ruby gem for command line motivation
 
 Install the gem with
 ```sh
-gem install motivator
+sudo gem install motivator
 ```
 
 Then you can run the gem from your command line. With the motivator executable. Passing the motivator the `motivate` flag as below
